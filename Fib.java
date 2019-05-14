@@ -12,7 +12,7 @@ public class Fib {
               by implementing the recurrence relation
      */
     public static long fib_recurrence( int n) {
-	if (n<=2)    // decision between base case and recursive case
+	if (n<=2 && n>0)    // decision between base case and recursive case
 	    return 1;    // solution to base case
 	else if (n>2)    // solution to recursive case
 	    return fib_recurrence(n-1)+ fib_recurrence(n-2);
@@ -29,10 +29,12 @@ public class Fib {
               calculated via the 8th-grade algorithm
      */
     public static long fib_grade8( int n) {
-	int num, first, second;
-	for (num = 1, first = 1, second = 1;
+	if (n<1) return -2;
+	
+	int num, first, oldsecond, second;
+	for (num = 1, first = 0, oldsecond=1, second = 1;
 	     num < n;
-	     num++, second+=first, first=second) {
+	     second+=first, first = oldsecond, oldsecond = second, num++) {
 	}
 	return second;
     }
@@ -55,6 +57,8 @@ public class Fib {
               ignore rounding issues.
      */
     public static double fib_Binet( int n) {
+	if (n<1) return -2;
+	
 	double phi = (1+Math.sqrt(5))/2;
 	double psi = (1-Math.sqrt(5))/2;
 
